@@ -1,0 +1,5 @@
+vector<int> reverseArray(vector<int> a) {
+    vector<int> b(a.begin(),a.end());
+    reverse(b.begin(),b.end());
+    return b;
+}

@@ -1,0 +1,57 @@
+Function Description
+
+Complete the function arrayManipulation in the editor below.
+
+arrayManipulation has the following parameters:
+
+int n - the number of elements in the array
+int queries[q][3] - a two dimensional array of queries where each queries[i] contains three integers, a, b, and k.
+Returns
+
+int - the maximum value in the resultant array
+Input Format
+
+Q The first line contains two space-separated integers  and , the size of the array and the number of operations.
+Each of the next  lines contains three space-separated integers ,  and , the left index, right index and summand.
+
+Constraints
+
+Sample Input
+
+5 3
+1 2 100
+2 5 100
+3 4 100
+Sample Output
+
+200
+Explanation
+
+After the first update the list is 100 100 0 0 0.
+After the second update list is 100 200 100 100 100.
+After the third update list is 100 200 200 200 100.
+
+The maximum value is .
+/*byb prefix sum*/
+long arrayManipulation(int n, vector<vector<int>> queries) {
+   vector<int> arr(n+1,0);
+  for(int i=0;i<queries.size();i++)
+  {
+      int a=queries[i][0];
+      int b=queries[i][1];
+      int k=queries[i][2];
+       arr[a]+=k;
+       if((b+1)<=n)
+       {
+           arr[b+1]-=k;
+       }
+  }
+       long sum=0,max_sum=0;
+       for(int i:arr)
+       {
+           sum=sum+i;
+           max_sum=max(max_sum,sum);
+       }
+       return max_sum;
+  
+}
